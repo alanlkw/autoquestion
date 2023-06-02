@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>File Upload</title>
+</head>
+
+<body>
+    <header>
+        <h1>File Upload</h1>
+    </header>
+
+    <main>
+        <section id="upload-section">
+            <h2>Upload File</h2>
+            <form id="upload-form" enctype="multipart/form-data">
+                <input type="file" name="file" id="file-input">
+                <button type="submit">Upload</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 File Upload. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('upload-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var fileInput = document.getElementById('file-input');
+            var file = fileInput.files[0];
+
+            if (file) {
+                var formData = new FormData();
+                formData.append('file', file);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'upload_file.php', true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        var response = xhr.responseText;
+                        alert(response);
+                    }
+                };
+                xhr.send(formData);
+            }
+        });
+    </script>
+</body>
+
+</html>

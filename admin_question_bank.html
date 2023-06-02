@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Question Bank</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Admin Question Bank</h1>
+
+    <table id="question-bank-table">
+        <tr>
+            <th>Question</th>
+            <th>Answer</th>
+            <th>Subject</th>
+            <th>Sent Date</th>
+        </tr>
+    </table>
+
+    <script>
+        // Simulating the data instead of fetching from a database
+        var questionBankData = [
+            {
+                question: "Question 1",
+                answer: "Answer 1",
+                subject: "Subject 1",
+                sent_date: "2023-05-01"
+            },
+            {
+                question: "Question 2",
+                answer: "Answer 2",
+                subject: "Subject 2",
+                sent_date: "2023-05-02"
+            },
+            {
+                question: "Question 3",
+                answer: "Answer 3",
+                subject: "Subject 3",
+                sent_date: "2023-05-03"
+            }
+        ];
+
+        // Function to populate the question bank table
+        function populateQuestionBankTable() {
+            var table = document.getElementById("question-bank-table");
+
+            // Clear existing table rows
+            while (table.rows.length > 1) {
+                table.deleteRow(1);
+            }
+
+            // Add new rows for each question bank entry
+            questionBankData.forEach(function (data) {
+                var row = table.insertRow();
+                var questionCell = row.insertCell();
+                var answerCell = row.insertCell();
+                var subjectCell = row.insertCell();
+                var sentDateCell = row.insertCell();
+
+                questionCell.textContent = data.question;
+                answerCell.textContent = data.answer;
+                subjectCell.textContent = data.subject;
+                sentDateCell.textContent = data.sent_date;
+            });
+
+            // Display a message if no question bank data is available
+            if (questionBankData.length === 0) {
+                var emptyRow = table.insertRow();
+                var emptyCell = emptyRow.insertCell();
+                emptyCell.colSpan = "4";
+                emptyCell.textContent = "No question bank data found.";
+            }
+        }
+
+        // Call the function to populate the question bank table
+        populateQuestionBankTable();
+    </script>
+</body>
+
+</html>

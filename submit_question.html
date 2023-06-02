@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Submit Question</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Submit Question</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="tutorial.html">Tutorial</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Submit a Question</h2>
+            <form id="question-form">
+                <label for="question">Question:</label>
+                <input type="text" id="question" name="question" required>
+
+                <label for="answer">Answer:</label>
+                <input type="text" id="answer" name="answer" required>
+
+                <button type="submit">Submit</button>
+            </form>
+            <p id="response"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 QuizTion. All rights reserved.</p>
+    </footer>
+
+    <script src="submit_question.js"></script>
+</body>
+
+</html>
