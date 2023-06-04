@@ -9,7 +9,7 @@ var userProfiles = [
     id: 2,
     email: "jane@example.com"
   }
-  // Add more user profiles as needed
+  
 ];
 
 var table = document.getElementById('user-profile-table');
