@@ -1,17 +1,14 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the form data
+    
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Validate and sanitize the input data
-
-    // Hash the password
+   
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Store the user's information in the database
-    // Connect to the database (replace with your database credentials)
+    
     $servername = "localhost";
     $username = "your_username";
     $password = "your_password";
@@ -21,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Prepare and execute the SQL query
+    
     $sql = "INSERT INTO users (username, email, password, role) VALUES ('$username', '$email', '$hashedPassword', 'user')";
     if ($conn->query($sql) === TRUE) {
         echo "Registration successful!";
