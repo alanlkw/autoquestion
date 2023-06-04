@@ -1,5 +1,5 @@
 document.getElementById("login-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault(); 
 
     var usernameInput = document.getElementById("username");
     var passwordInput = document.getElementById("password");
