@@ -1,17 +1,16 @@
--- Create the user_profiles table
 CREATE TABLE user_profiles (
   id INT(11) PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL
 );
 
--- Insert sample user profiles
+
 INSERT INTO user_profiles (username, email) VALUES
 ('John Doe', 'john@example.com'),
 ('Jane Smith', 'jane@example.com'),
 ('Bob Johnson', 'bob@example.com');
 
--- Create the question_bank table
+
 CREATE TABLE question_bank (
   id INT(11) PRIMARY KEY,
   question VARCHAR(255) NOT NULL,
@@ -19,7 +18,7 @@ CREATE TABLE question_bank (
   subject VARCHAR(255) NOT NULL
 );
 
--- Create the login table
+
 CREATE TABLE log_in (
   id INT(11) PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
@@ -27,7 +26,7 @@ CREATE TABLE log_in (
   role VARCHAR(255) NOT NULL
 );
 
--- Create the signup table
+
 CREATE TABLE sign_up (
   id INT(11)  PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
@@ -35,7 +34,7 @@ CREATE TABLE sign_up (
   password VARCHAR(255) NOT NULL
 );
 
--- Insert sample data for testing purposes
+
 INSERT INTO question_bank (question, answer, subject) VALUES
 ('Question 1', 'Answer 1', 'Math'),
 ('Question 2', 'Answer 2', 'Science'),
@@ -49,7 +48,7 @@ INSERT INTO sign_up (username, email, password) VALUES
 
 
 
--- Create the question bank tables for each subject
+
 CREATE TABLE english_question_bank (
   id INT PRIMARY KEY,
   question VARCHAR(255) NOT NULL,
@@ -62,7 +61,7 @@ CREATE TABLE math_question_bank (
   answer VARCHAR(255) NOT NULL
 );
 
--- Create the table to store uploaded files for each subject
+
 CREATE TABLE english_question_bank_files (
   id INT PRIMARY KEY,
   file_title VARCHAR(255) NOT NULL,
@@ -76,7 +75,7 @@ CREATE TABLE math_question_bank_files (
 );
 
 
--- Database for Login and Signup
+
 CREATE TABLE User_ID(
   id INT  PRIMARY KEY,
   username VARCHAR(50) NOT NULL,
@@ -84,7 +83,7 @@ CREATE TABLE User_ID(
   email VARCHAR(50) NOT NULL
 );
 
--- Database for Question Bank
+
 CREATE TABLE Question (
   id INT  PRIMARY KEY,
   question_text TEXT NOT NULL,
@@ -104,7 +103,7 @@ CREATE TABLE Answer (
   FOREIGN KEY (question_id) REFERENCES Question(id)
 );
 
--- Database for User Profile
+
 CREATE TABLE UserProfile (
   id INT  PRIMARY KEY,
   user_id INT NOT NULL,
@@ -113,14 +112,13 @@ CREATE TABLE UserProfile (
   FOREIGN KEY (userprofile_id) REFERENCES UserProfile(id)
 );
 
--- Database for Admin Panel
+
 CREATE TABLE AdminPanel (
   id INT  PRIMARY KEY,
   username VARCHAR(50) NOT NULL,
   password VARCHAR(50) NOT NULL
 );
 
--- Database for Generating Questions
 CREATE TABLE SubjectID (
   id INT  PRIMARY KEY,
   subject_name VARCHAR(50) NOT NULL
