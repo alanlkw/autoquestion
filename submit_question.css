@@ -1,10 +1,18 @@
+/* Styles for the submit_question.html page */
 
+/* Define the styles for the form */
 form {
     margin: 20px;
 }
 
-
+/* Define the styles for the response message */
 #response {
     margin: 20px;
     color: green;
+}
+body{
+    padding: 10px;
+        background: url('1.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;
 }

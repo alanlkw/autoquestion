@@ -1,49 +1,39 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+// Replace with your actual database credentials
+$hostname = 'localhost:3307';
+$username = 'root';
+$password = '';
+$database = 'signup';
 
-   
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+// Get the signup data from the request
+$username = $_POST['username'];
+$password = $_POST['password'];
+$role = $_POST['role'];
 
-    
-    $servername = "localhost";
-    $username = "your_username";
-    $password = "your_password";
-    $dbname = "your_database";
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+// Perform necessary validations here (e.g., check for unique username, strong password, etc.)
 
-    
-    $sql = "INSERT INTO users (username, email, password, role) VALUES ('$username', '$email', '$hashedPassword', 'user')";
-    if ($conn->query($sql) === TRUE) {
-        echo "Registration successful!";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
+// Create a new user record in the appropriate table based on the role
+$conn = new mysqli('localhost', 'root', '', 'signup');
+if ($conn->connect_error) {
+  die('Connection failed: ' . $conn->connect_error);
 }
+
+if ($role === 'user') {
+  $table = 'users';
+} elseif ($role === 'admin') {
+  $table = 'admins';
+}
+
+$sql = "INSERT INTO $table= 'users' (username, password) VALUES ('$username', '$password')";
+if ($conn->query($sql) === TRUE) {
+  $response = array('success' => true, 'role' => $role);
+} else {
+  $response = array('success' => false);
+}
+
+$conn->close();
+
+// Return the response as JSON
+header('Content-Type: application/json');
+echo json_encode($response);
 ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Sign Up</title>
-</head>
-
-<body>
-    <h2>Sign Up</h2>
-    <form method="POST" action="signup.php">
-        <input type="text" name="username" placeholder="Username" required><br>
-        <input type="email" name="email" placeholder="Email" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <input type="submit" value="Sign Up">
-    </form>
-</body>
-
-</html>

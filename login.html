@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>QuizTion - Login</title>
+    <title>Login</title>
     <link rel="stylesheet" type="text/css" href="login.css">
 </head>
 
@@ -10,7 +10,7 @@
     <header>
         <h1>QuizTion</h1>
     </header>
-
+    
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -20,25 +20,60 @@
             <li><a href="signup.html">Sign Up</a></li>
         </ul>
     </nav>
+    <div class="container">
+        <h1>Login</h1>
+        <form id="login-form" method="POST" action="login.php">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <label for="role">Role</label>
+            <select id="role" name="role">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select><br>
+            <input type="submit" value="Login">
 
-    <main>
-        <section>
-            <h2>Login</h2>
-            <form id="login-form">
-                <label for="username">Username or Email:</label>
-                <input type="text" id="username" name="username" required>
+        </form>
+    </div>
+    <script>
+        // Function to handle form submission
+        function login(event) {
+            event.preventDefault(); // Prevent form submission
 
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+            // Get form values
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
 
-                <input type="submit" value="Login">
-            </form>
-        </section>
-    </main>
+            // Create AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "login.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-   
+            // Handle AJAX response
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
 
-    <script src="login.js"></script>
+                    if (response.success) {
+                        // Redirect to admin panel or user page based on user type
+                        if (response.userType === "admin") {
+                            window.location.href = "admin_panel.php";
+                        } else {
+                            window.location.href = "user_page.php";
+                        }
+                    } else {
+                        // Display error message
+                        document.getElementById("error-message").innerHTML = response.message;
+                    }
+                }
+            };
+
+            // Send AJAX request with form data
+            xhr.send("username=" + encodeURIComponent(username) + "&password=" + encodeURIComponent(password));
+        }
+
+        // Attach form submission event listener
+        document.getElementById("login-form").addEventListener("submit", login);
+    </script>
 </body>
 
 </html>

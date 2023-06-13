@@ -2,14 +2,14 @@ var userProfiles = [
   {
     username: "John",
     id: 1,
-    email: "john@example.com"
+    email: "john@gmail.com"
   },
   {
     username: "Jane",
     id: 2,
-    email: "jane@example.com"
+    email: "jane@gmail.com"
   }
-  
+  // Add more user profiles as needed
 ];
 
 var table = document.getElementById('user-profile-table');
